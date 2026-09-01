@@ -1,0 +1,6 @@
+{
+  "name": "WhatsApp Store",
+  "description": "A modern, conversational e-commerce storefront and admin dashboard with instant WhatsApp ordering, product management, and theme customization.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

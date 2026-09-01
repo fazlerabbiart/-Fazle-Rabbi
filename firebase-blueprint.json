@@ -1,0 +1,220 @@
+{
+  "entities": {
+    "Product": {
+      "title": "Product",
+      "description": "Store item available in catalog",
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Product title"
+        },
+        "category": {
+          "type": "string",
+          "description": "Product category"
+        },
+        "regularPrice": {
+          "type": "number",
+          "description": "Regular price of the product"
+        },
+        "salePrice": {
+          "type": "number",
+          "description": "Sale/discounted price"
+        },
+        "description": {
+          "type": "string",
+          "description": "Detailed product description"
+        },
+        "inStock": {
+          "type": "boolean",
+          "description": "Whether the product is currently in stock"
+        },
+        "imageUrl": {
+          "type": "string",
+          "description": "Primary product image URL"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "ISO timestamp of product creation"
+        }
+      },
+      "required": ["title", "category", "regularPrice", "inStock", "imageUrl"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "Customer order details placed via WhatsApp or checkout",
+      "type": "object",
+      "properties": {
+        "totalAmount": {
+          "type": "number",
+          "description": "Total order amount"
+        },
+        "customerName": {
+          "type": "string",
+          "description": "Customer full name"
+        },
+        "customerPhone": {
+          "type": "string",
+          "description": "Customer contact phone number"
+        },
+        "deliveryAddress": {
+          "type": "string",
+          "description": "Customer delivery address"
+        },
+        "customerNote": {
+          "type": "string",
+          "description": "Special customer instructions"
+        },
+        "status": {
+          "type": "string",
+          "description": "Order status (pending, confirmed, dispatched, out_for_delivery, delivered)"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "ISO timestamp of order creation"
+        },
+        "whatsappMessage": {
+          "type": "string",
+          "description": "Generated WhatsApp order string"
+        }
+      },
+      "required": ["totalAmount", "customerName", "customerPhone", "deliveryAddress", "status", "createdAt"]
+    },
+    "ChatMessage": {
+      "title": "ChatMessage",
+      "description": "Chat and inquiry message sent by customers or admin",
+      "type": "object",
+      "properties": {
+        "sender": {
+          "type": "string",
+          "description": "Sender type: customer, admin, or bot"
+        },
+        "senderName": {
+          "type": "string",
+          "description": "Name of the message sender"
+        },
+        "senderPhone": {
+          "type": "string",
+          "description": "Optional phone number"
+        },
+        "message": {
+          "type": "string",
+          "description": "Content of the chat message"
+        },
+        "timestamp": {
+          "type": "string",
+          "description": "Timestamp of the message"
+        },
+        "productId": {
+          "type": "string",
+          "description": "Optional referenced product ID"
+        },
+        "productTitle": {
+          "type": "string",
+          "description": "Optional referenced product title"
+        }
+      },
+      "required": ["sender", "senderName", "message", "timestamp"]
+    },
+    "SiteSettings": {
+      "title": "SiteSettings",
+      "description": "Global storefront branding and communication settings",
+      "type": "object",
+      "properties": {
+        "storeName": {
+          "type": "string",
+          "description": "Storefront name"
+        },
+        "storeTagline": {
+          "type": "string",
+          "description": "Storefront tagline"
+        },
+        "logoUrl": {
+          "type": "string",
+          "description": "Logo URL"
+        },
+        "whatsappNumber": {
+          "type": "string",
+          "description": "Store WhatsApp phone number"
+        },
+        "currency": {
+          "type": "string",
+          "description": "Currency code (BDT, USD, etc.)"
+        },
+        "currencySymbol": {
+          "type": "string",
+          "description": "Currency symbol"
+        },
+        "brandColor": {
+          "type": "string",
+          "description": "Hex color code"
+        },
+        "brandColorName": {
+          "type": "string",
+          "description": "Theme color identifier"
+        }
+      },
+      "required": ["storeName", "whatsappNumber", "currency", "currencySymbol"]
+    },
+    "CustomerProfile": {
+      "title": "CustomerProfile",
+      "description": "Stored customer profile and address information",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Customer name"
+        },
+        "phone": {
+          "type": "string",
+          "description": "Customer phone number"
+        },
+        "address": {
+          "type": "string",
+          "description": "Customer default delivery address"
+        },
+        "notes": {
+          "type": "string",
+          "description": "Customer default notes"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Timestamp of profile update"
+        }
+      },
+      "required": ["name", "phone", "address"]
+    }
+  },
+  "firestore": {
+    "/products/{productId}": {
+      "schema": {
+        "$ref": "#/entities/Product"
+      },
+      "description": "Products catalog"
+    },
+    "/orders/{orderId}": {
+      "schema": {
+        "$ref": "#/entities/Order"
+      },
+      "description": "Orders collection"
+    },
+    "/chat_messages/{messageId}": {
+      "schema": {
+        "$ref": "#/entities/ChatMessage"
+      },
+      "description": "Customer live chat and inquiries"
+    },
+    "/settings/{settingId}": {
+      "schema": {
+        "$ref": "#/entities/SiteSettings"
+      },
+      "description": "Global storefront settings"
+    },
+    "/customers/{customerId}": {
+      "schema": {
+        "$ref": "#/entities/CustomerProfile"
+      },
+      "description": "Saved customer profiles"
+    }
+  }
+}

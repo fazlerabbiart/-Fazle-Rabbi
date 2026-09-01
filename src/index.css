@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-offwhite: #faf8f5;
+    --bg-offwhite-subtle: #f4efe6;
+    --bg-card: #ffffff;
+    --border-warm: #e8e2d8;
+    --border-warm-dark: #d5ccbe;
+    --text-primary: #1f2922;
+    --text-secondary: #516453;
+    --text-muted: #7e9180;
+    --color-emerald: #2d6a4f;
+    --color-emerald-hover: #22553e;
+    --color-whatsapp: #25d366;
+    --color-amber: #d97706;
+    --color-amber-light: #fef3c7;
+  }
+
+  body {
+    background-color: #faf8f5;
+    color: #1f2922;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
